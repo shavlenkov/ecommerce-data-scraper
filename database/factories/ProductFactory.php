@@ -19,8 +19,8 @@ class ProductFactory extends Factory
         return [
             'title' => $this->faker->word(),
             'description' => $this->faker->paragraph(),
-            'manufacturer_part_number' => $this->faker->unique()->lexify('MPN???????'),
-            'pack_size' => $this->faker->randomElement(['each', 'case']),
+            'manufacturer_part_number' => $this->faker->unique()->bothify('???????-####'),
+            'pack_size_id' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

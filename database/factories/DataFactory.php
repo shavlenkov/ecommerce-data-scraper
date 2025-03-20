@@ -30,19 +30,11 @@ class DataFactory extends Factory
             $totalRatings += $stars * $count;
         }
 
-        $randomTimestamp = $this->faker->dateTimeBetween('-1 year', 'now')->getTimestamp();
-
         return [
-            'product_id' => $this->faker->numberBetween(1, 1000),
-            'retailer_id' => $this->faker->numberBetween(1, 10),
-            'title' => $this->faker->word(),
-            'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'stock_count' => $this->faker->numberBetween(1, 100),
             'rating' => $rating,
             'avg_rating' => array_sum($rating) > 0 ? $totalRatings / array_sum($rating) : 0,
-            'created_at' => $randomTimestamp,
-            'updated_at' => $randomTimestamp,
         ];
     }
 }

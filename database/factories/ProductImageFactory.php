@@ -17,8 +17,8 @@ class ProductImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id' => $this->faker->numberBetween(1, 1000),
-            'image_id' => $this->faker->numberBetween(1, 50),
+            'image_filename' => $this->faker->word().'.jpg',
+            'image_url' => $this->faker->imageUrl(),
         ];
     }
 }

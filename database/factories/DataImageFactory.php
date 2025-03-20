@@ -17,8 +17,8 @@ class DataImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'data_id' => $this->faker->numberBetween(1, 100),
-            'image_id' => $this->faker->numberBetween(1, 50),
+            'image_filename' => $this->faker->word().'.jpg',
+            'image_url' => $this->faker->imageUrl(),
         ];
     }
 }
