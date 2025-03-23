@@ -50,6 +50,16 @@ class User extends Authenticatable
         ];
     }
 
+    public function isSuperUser(): bool
+    {
+        return $this->role_id === config('app.super_user_role_id');
+    }
+
+    public function isRegularUser(): bool
+    {
+        return $this->role_id === config('app.regular_user_role_id');
+    }
+
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
