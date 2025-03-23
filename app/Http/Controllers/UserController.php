@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Gate;
 
 use App\Http\Requests\StoreOrUpdateUserRequest;
+use App\Http\Requests\SetRetailersRequest;
 
 use App\Http\Resources\UserResource;
 
@@ -96,6 +97,27 @@ class UserController extends Controller
         Gate::authorize('delete', $user);
 
         $this->userService->deleteUser($user);
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    /**
+     * Set retailers to a user
+     *
+     * @param SetRetailersRequest $request
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function setRetailers(SetRetailersRequest $request, User $user): JsonResponse {
+        if ($user->role_id === config('app.super_user_role_id')) {
+            abort(403);
+        }
+
+        Gate::authorize('setRetailers', $user);
+
+        $this->userService->setRetailers($request->validated(), $user);
 
         return response()->json([
             'success' => true,

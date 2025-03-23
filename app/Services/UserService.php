@@ -81,4 +81,23 @@ class UserService implements UserServiceContract
     {
         $user->delete();
     }
+
+    /**
+     * Method for setting retailers to a user
+     *
+     * @param User $user
+     * @param array $retailer_ids
+     * @return void
+     */
+    public function setRetailers(array $retailer_ids, User $user): void
+    {
+        $user->retailers()->detach();
+
+        foreach ($retailer_ids as $retailer_id) {
+            $user->retailers()->attach($retailer_id, [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+    }
 }

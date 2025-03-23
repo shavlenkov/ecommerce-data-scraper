@@ -15,4 +15,5 @@ interface UserServiceContract
     public function createUser(array $data): void;
     public function updateUser(array $data, User $user): void;
     public function deleteUser(User $user) : void;
+    public function setRetailers(array $retailer_ids, User $user): void;
 }

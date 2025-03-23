@@ -30,4 +30,9 @@ class UserPolicy
     {
         return $user->isSuperUser();
     }
+
+    public function setRetailers(User $user): bool
+    {
+        return $user->isSuperUser();
+    }
 }
