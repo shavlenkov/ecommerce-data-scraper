@@ -7,10 +7,13 @@ use Illuminate\Support\Facades\Gate;
 
 use App\Services\AuthService;
 use App\Services\UserService;
+use App\Services\RetailerService;
 
 use App\Models\User;
+use App\Models\Retailer;
 
 use App\Policies\UserPolicy;
+use App\Policies\RetailerPolicy;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserService::class, function () {
             return new UserService();
         });
+
+        $this->app->bind(RetailerService::class, function () {
+            return new RetailerService();
+        });
     }
 
     /**
@@ -34,5 +41,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::policy(User::class, UserPolicy::class);
+        Gate::policy(Retailer::class, RetailerPolicy::class);
     }
 }
