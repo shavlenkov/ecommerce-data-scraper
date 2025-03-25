@@ -62,10 +62,10 @@ class RetailerService implements RetailerServiceContract
             'logo' => $logo,
         ] = $data;
 
-        $retailer->title = $title;
-        $retailer->url = $url;
-        $retailer->currency = $currency;
-        $retailer->logo = $logo;
+        $retailer->title = $title ?? $retailer->title;
+        $retailer->url = $url ?? $retailer->url;
+        $retailer->currency = $currency ?? $retailer->currency;
+        $retailer->logo = $logo ?? $retailer->logo;
 
         $retailer->save();
     }

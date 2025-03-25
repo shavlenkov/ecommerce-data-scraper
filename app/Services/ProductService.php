@@ -84,10 +84,10 @@ class ProductService implements ProductServiceContract
             'images' => $images,
         ] = $data;
 
-        $product->title = $title;
-        $product->description = $description;
-        $product->manufacturer_part_number = $manufacturer_part_number;
-        $product->pack_size_id = $pack_size_id;
+        $product->title = $title ?? $product->title;
+        $product->description = $description ?? $product->description;
+        $product->manufacturer_part_number = $manufacturer_part_number ?? $product->manufacturer_part_number;
+        $product->pack_size_id = $pack_size_id ?? $product->pack_size_id;
 
         $product->save();
 

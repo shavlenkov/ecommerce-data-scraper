@@ -63,10 +63,10 @@ class UserService implements UserServiceContract
             'role_id' => $role_id,
         ] = $data;
 
-        $user->name = $name;
-        $user->email = $email;
-        $user->password = Hash::make($password);
-        $user->role_id = $role_id;
+        $user->name = $name ?? $user->name;
+        $user->email = $email ?? $user->email;
+        $user->password = Hash::make($password) ?? $user->password;
+        $user->role_id = $role_id ?? $user->role_id;
 
         $user->save();
     }
