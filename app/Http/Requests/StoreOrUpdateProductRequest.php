@@ -14,14 +14,14 @@ class StoreOrUpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'manufacturer_part_number' => 'required|unique:products,manufacturer_part_number',
-            'pack_size_id' => 'required|exists:pack_sizes,id',
-            'product_url' => 'required|url',
-            'retailer_id' => 'required|exists:retailers,id',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'manufacturer_part_number' => 'required|string|unique:products,manufacturer_part_number',
+            'pack_size_id' => 'required|integer|exists:pack_sizes,id',
+            'product_url' => 'required|string|url',
+            'retailer_id' => 'required|integer|exists:retailers,id',
             'images' => 'required|array|min:1',
-            'images.*' => 'url',
+            'images.*' => 'url|string',
         ];
     }
 }

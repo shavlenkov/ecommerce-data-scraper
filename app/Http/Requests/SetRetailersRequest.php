@@ -14,15 +14,8 @@ class SetRetailersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'retailer_ids' => [
-                'required',
-                'array',
-                'min:1',
-            ],
-            'retailer_ids.*' => [
-                'integer',
-                'distinct',
-            ],
+            'retailer_ids' => 'required|array|min:1',
+            'retailer_ids.*' => 'integer|distinct',
         ];
     }
 }

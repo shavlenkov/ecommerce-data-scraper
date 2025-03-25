@@ -14,10 +14,10 @@ class StoreOrUpdateRetailerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255',
-            'url' => 'required|url',
-            'currency' => 'required',
-            'logo' => 'required|url',
+            'title' => 'required|string|max:255',
+            'url' => 'required|string|url',
+            'currency' => 'required|string',
+            'logo' => 'required|string|url',
         ];
     }
 }
