@@ -17,7 +17,7 @@ class PackSizeFactory extends Factory
     public function definition(): array
     {
         return [
-            'size' => $this->faker->unique()->randomElement([
+            'name' => $this->faker->unique()->randomElement([
                 'extra small',
                 'small',
                 'medium',

@@ -10,6 +10,6 @@ class PackSize extends Model
     use HasFactory;
 
     protected $fillable = [
-        'size',
+        'name',
     ];
 }
