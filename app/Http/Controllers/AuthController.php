@@ -27,7 +27,18 @@ class AuthController extends Controller
      */
     public function postSignIn(SignInUserRequest $request): JsonResponse
     {
-        return $this->authService->createBearerToken($request->validated());
+        $token = $this->authService->createBearerToken($request->validated());
+
+        if (empty($token)) {
+            return response()->json([
+                'message' => 'Invalid email or password!',
+            ], 401);
+        }
+
+        return response()->json([
+            'type' => 'Bearer',
+            'token' => $token,
+        ]);
     }
 
     /**

@@ -6,6 +6,6 @@ use Illuminate\Http\JsonResponse;
 
 interface AuthServiceContract
 {
-    public function createBearerToken(array $data): JsonResponse;
+    public function createBearerToken(array $data): ?string;
     public function deleteBearerToken(): void;
 }

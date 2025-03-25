@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 use App\Contracts\AuthServiceContract;
@@ -15,24 +14,17 @@ class AuthService implements AuthServiceContract
      * Method for creating a Bearer token
      *
      * @param array $data
-     * @return JsonResponse
+     * @return string|null
      */
-    public function createBearerToken(array $data): JsonResponse
+    public function createBearerToken(array $data): ?string
     {
         if (!Auth::attempt($data)) {
-            return response()->json([
-                'message' => 'Invalid email or password!',
-            ], 401);
+            return null;
         }
 
         $user = User::where('email', $data['email'])->firstOrFail();
 
-        $token = $user->createToken('token')->plainTextToken;
-
-        return response()->json([
-            'type' => 'Bearer',
-            'token' => $token,
-        ]);
+        return $user->createToken('token')->plainTextToken;
     }
 
     /**
