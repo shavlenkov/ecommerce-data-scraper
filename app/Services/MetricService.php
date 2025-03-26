@@ -4,11 +4,13 @@ namespace App\Services;
 
 use Carbon\Carbon;
 
+use App\Contracts\MetricServiceContract;
+
 use App\Http\Resources\MetricResource;
 
 use App\Models\Data;
 
-class MetricService
+class MetricService implements MetricServiceContract
 {
     public function getMetrics($filters, $metricType = 'retailers.metrics'): MetricResource
     {
