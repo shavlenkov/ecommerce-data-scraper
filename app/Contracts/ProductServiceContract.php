@@ -15,4 +15,5 @@ interface ProductServiceContract
     public function createProduct(array $data): void;
     public function updateProduct(array $data, Product $product): void;
     public function deleteProduct(Product $product): void;
+    public function searchProductByMPN(string $MPN): ?ProductResource;
 }

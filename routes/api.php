@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/products/metrics', MetricController::class)->name('products.metrics');
     Route::post('/retailers/metrics', MetricController::class)->name('retailers.metrics');
 
+    Route::get('/products/search', [ProductController::class, 'search']);
+
     Route::apiResource('users', UserController::class);
     Route::apiResource('retailers', RetailerController::class);
     Route::apiResource('products', ProductController::class);

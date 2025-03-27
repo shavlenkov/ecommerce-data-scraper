@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 
 use App\Http\Requests\StoreOrUpdateProductRequest;
 
@@ -100,5 +101,28 @@ class ProductController extends Controller
         return response()->json([
             'success' => true,
         ]);
+    }
+
+    /**
+     * Search the specified resource
+     *
+     * @param Request $request
+     * @return ProductResource|JsonResponse
+     */
+    public function search(Request $request): ProductResource | JsonResponse
+    {
+        $MPN = $request->query('MPN');
+
+        if (!empty($MPN)) {
+            $product = $this->productService->searchProductByMPN($MPN);
+
+            if (!empty($product)) {
+                return $product;
+            }
+
+            return response()->json(['message' => 'Product not found']);
+        }
+
+        return response()->json(['message' => 'MPN parameter is required']);
     }
 }

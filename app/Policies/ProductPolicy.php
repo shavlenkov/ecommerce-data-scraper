@@ -30,4 +30,9 @@ class ProductPolicy
     {
         return $user->isSuperUser();
     }
+
+    public function search(User $user): bool
+    {
+        return $user->isSuperUser();
+    }
 }

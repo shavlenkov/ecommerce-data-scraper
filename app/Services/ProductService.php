@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Gate;
 
 use App\Contracts\ProductServiceContract;
 
@@ -120,5 +121,23 @@ class ProductService implements ProductServiceContract
     public function deleteProduct(Product $product): void
     {
         $product->delete();
+    }
+
+    /**
+     * Method for searching a specific product by MPN
+     *
+     * @param string $MPN
+     * @return ProductResource|null
+     */
+    public function searchProductByMPN(string $MPN): ?ProductResource {
+        $product = Product::searchByMPN($MPN)->first();
+
+        if (empty($product)) {
+            return null;
+        }
+
+        Gate::authorize('search', $product);
+
+        return new ProductResource($product);
     }
 }
